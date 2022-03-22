@@ -1,0 +1,27 @@
+{
+  "name": "pulldown-napi",
+  "version": "0.1.0",
+  "author": "zoubingwu <zoubingwu@gmail.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "engines": {
+    "node": ">= 10"
+  },
+  "napi": {
+    "name": "pulldown-napi",
+    "triples": {}
+  },
+  "scripts": {
+    "artifacts": "napi artifacts",
+    "build": "napi build --platform --release",
+    "build:debug": "napi build --platform",
+    "prepublishOnly": "napi prepublish -t npm",
+    "version": "napi version",
+    "test": "ava"
+  },
+  "devDependencies": {
+    "@napi-rs/cli": "^2.5.0",
+    "ava": "^4.1.0"
+  }
+}
