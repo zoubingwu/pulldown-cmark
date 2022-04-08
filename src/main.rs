@@ -25,8 +25,9 @@
 use pulldown_cmark::{html, Options, Parser};
 
 use std::env;
-use std::io::{self, Read};
+use std::io::{self};
 use std::mem;
+use std::fs;
 
 fn dry_run(text: &str, opts: Options) {
     let p = Parser::new_ext(text, opts);
@@ -53,6 +54,7 @@ pub fn main() -> std::io::Result<()> {
     let args: Vec<_> = env::args().collect();
     let mut opts = getopts::Options::new();
     opts.optflag("h", "help", "this help message");
+    opts.optopt("f", "file", "input file path", "FILE");
     opts.optflag("d", "dry-run", "dry run, produce no output");
     opts.optflag("e", "events", "print event sequence instead of rendering");
     opts.optflag("T", "enable-tables", "enable GitHub-style tables");
@@ -94,7 +96,10 @@ pub fn main() -> std::io::Result<()> {
     }
 
     let mut input = String::new();
-    io::stdin().lock().read_to_string(&mut input)?;
+    if matches.opt_present("f") {
+        input = fs::read_to_string(matches.opt_str("f").unwrap()).expect("Unable to read file");
+    }
+
     if matches.opt_present("events") {
         print_events(&input, opts);
     } else if matches.opt_present("dry-run") {
@@ -111,5 +116,6 @@ pub fn main() -> std::io::Result<()> {
         // leaking data. Skipping cleanup lets us return a bit (~5%) faster.
         mem::forget(p);
     }
+
     Ok(())
 }

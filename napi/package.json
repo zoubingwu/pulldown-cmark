@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "author": "zoubingwu <zoubingwu@gmail.com>",
   "license": "MIT",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "pulldown-napi.js",
+  "types": "pulldown-napi.d.ts",
   "engines": {
     "node": ">= 10"
   },
@@ -18,10 +18,17 @@
     "build:debug": "napi build --platform",
     "prepublishOnly": "napi prepublish -t npm",
     "version": "napi version",
-    "test": "ava"
+    "test": "ava -u"
   },
   "devDependencies": {
     "@napi-rs/cli": "^2.5.0",
-    "ava": "^4.1.0"
+    "ava": "^4.1.0",
+    "benchmark": "^2.1.4",
+    "chalk": "^5.0.1",
+    "markdown-it": "^12.3.2",
+    "marked": "^4.0.12",
+    "micromark": "^3.0.10",
+    "remark": "^14.0.2",
+    "remark-html": "^15.0.1"
   }
 }

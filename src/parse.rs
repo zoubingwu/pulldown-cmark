@@ -166,6 +166,8 @@ impl<'input, 'callback> Parser<'input, 'callback> {
     ) -> Self {
         let (mut tree, allocs) = run_first_pass(text, options);
         tree.reset();
+        // println!("tree: {:?}", tree);
+
         let inline_stack = Default::default();
         let link_stack = Default::default();
         let html_scan_guard = Default::default();

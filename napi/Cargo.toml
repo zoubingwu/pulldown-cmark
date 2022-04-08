@@ -11,6 +11,7 @@ crate-type = ["cdylib"]
 napi = { version = "2.1.0", default-features = false, features = ["napi4"] }
 napi-derive = "2.1.0"
 pulldown-cmark = { path = "../", version = "0.9.1", default-features = false }
+syntect = "4.6"
 
 [build-dependencies]
 napi-build = "1.2.1"
